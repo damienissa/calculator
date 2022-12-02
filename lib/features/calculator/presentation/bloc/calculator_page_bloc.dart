@@ -10,7 +10,9 @@ class CalculatorPageBloc
   final TextEditingController textEditingController =
       TextEditingController(text: '0');
 
-  CalculatorPageBloc() : super(CalculatorPageInitial()) {
+  final List<double> chain = [];
+
+  CalculatorPageBloc() : super(CalculatorPageInitialState()) {
     on<NumberInputEvent>(_onNumberInputEvent);
     on<DecimalInputEvent>(_onDecimalInputEvent);
     on<ActionInputEvent>(_onActionInputEvent);
@@ -25,6 +27,11 @@ class CalculatorPageBloc
     textEditingController.text += event.num.toString();
   }
 
+  void _onClearFieldEvent(
+      ClearFieldEvent event, Emitter<CalculatorPageState> emit) {
+    textEditingController.text = '0';
+  }
+
   void _onDecimalInputEvent(
       DecimalInputEvent event, Emitter<CalculatorPageState> emit) {
     if (!textEditingController.text.contains(',')) {
@@ -33,10 +40,22 @@ class CalculatorPageBloc
   }
 
   void _onActionInputEvent(
-      ActionInputEvent event, Emitter<CalculatorPageState> emit) {}
+      ActionInputEvent event, Emitter<CalculatorPageState> emit) {
+    switch (event.action) {
+      case CalculationActions.dilennya:
+        return _onDilennya(emit);
+      default:
+    }
+  }
 
-  void _onClearFieldEvent(
-      ClearFieldEvent event, Emitter<CalculatorPageState> emit) {
-    textEditingController.text = '0';
+  void _onDilennya(Emitter<CalculatorPageState> emit) {
+    if (textEditingController.text.isEmpty ||
+        textEditingController.text == '0') {
+      return;
+    }
+    if (chain.isEmpty) {
+      chain.add(double.parse(textEditingController.text));
+      emit(CalculatorPageActionState(actions: CalculationActions.dilennya));
+    }
   }
 }

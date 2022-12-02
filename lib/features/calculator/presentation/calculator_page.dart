@@ -23,6 +23,11 @@ class _CalculatorPageBody extends StatelessWidget {
     return BlocBuilder<CalculatorPageBloc, CalculatorPageState>(
       builder: (context, state) {
         final bloc = context.read<CalculatorPageBloc>();
+        CalculationActions? currentAction;
+        if (state is CalculatorPageActionState) {
+          currentAction = state.actions;
+        }
+
         return Scaffold(
           backgroundColor: Colors.black54,
           body: SafeArea(
@@ -73,6 +78,8 @@ class _CalculatorPageBody extends StatelessWidget {
                       ButtonCalculator(
                         color: Colors.amber,
                         title: '/',
+                        isSelected:
+                            currentAction == CalculationActions.dilennya,
                         onPressed: () {
                           bloc.add(ActionInputEvent(
                               action: CalculationActions.dilennya));
@@ -242,11 +249,13 @@ class ButtonCalculator extends StatelessWidget {
     required this.title,
     required this.onPressed,
     this.doubled = false,
+    this.isSelected = false,
   });
   final Color color;
   final String title;
   final bool doubled;
   final VoidCallback onPressed;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -257,7 +266,7 @@ class ButtonCalculator extends StatelessWidget {
         width: doubled ? 172 : 80,
         height: 80,
         decoration: BoxDecoration(
-          color: color,
+          color: isSelected ? Colors.white : color,
           borderRadius: BorderRadius.circular(40),
         ),
         child: Center(
@@ -265,7 +274,9 @@ class ButtonCalculator extends StatelessWidget {
             title,
             style: TextStyle(
               fontSize: 32,
-              color: color == Colors.grey[400] ? Colors.black87 : Colors.white,
+              color: color == Colors.grey[400]
+                  ? Colors.black87
+                  : (isSelected ? color : Colors.white),
             ),
           ),
         ),
