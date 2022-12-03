@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Calculator app',
       home: CalculatorPage(
-        builder: (calculator) {
+        builder: (Calculator calculator) {
           return CalculatorPageBody(
             calculator: calculator,
           );
