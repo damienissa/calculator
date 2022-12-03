@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'features/calculator/presentation/calculator_page.dart';
@@ -15,9 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Calculator app',
       home: CalculatorPage(
         builder: (Calculator calculator) {
-          return CalculatorPageBody(
-            calculator: calculator,
-          );
+          return Container();
         },
       ),
     );
