@@ -2,7 +2,11 @@
 part of 'calculator_page_bloc.dart';
 
 enum CalculationActions {
-  dilennya, mnojennya, vidnimannya, dodavannya, dorivnuye;
+  dilennya,
+  mnojennya,
+  vidnimannya,
+  dodavannya,
+  dorivnuye;
 }
 
 @immutable
@@ -18,7 +22,7 @@ class NumberInputEvent extends CalculatorPageEvent {
   NumberInputEvent({
     required this.num,
   });
-  
+
   @override
   List<Object?> get props => [num];
 }
@@ -33,7 +37,7 @@ class ActionInputEvent extends CalculatorPageEvent {
   ActionInputEvent({
     required this.action,
   });
-  
+
   @override
   List<Object?> get props => [action];
 }

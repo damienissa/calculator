@@ -3,247 +3,246 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../main.dart';
+
+typedef CalculatorBuilder = Widget Function(Calculator calculator);
+
 class CalculatorPage extends StatelessWidget {
-  const CalculatorPage({super.key});
+  const CalculatorPage({
+    super.key,
+    required this.builder,
+  });
+
+  final CalculatorBuilder builder;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CalculatorPageBloc>(
       create: (context) => CalculatorPageBloc(),
-      child: const _CalculatorPageBody(),
+      child: BlocBuilder<CalculatorPageBloc, CalculatorPageState>(
+          builder: (context, state) {
+        return builder(
+          _Calculator(context: context),
+        );
+      }),
     );
   }
 }
 
-class _CalculatorPageBody extends StatelessWidget {
-  const _CalculatorPageBody();
+class CalculatorPageBody extends StatelessWidget {
+  const CalculatorPageBody({super.key, required this.calculator});
+  final Calculator calculator;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CalculatorPageBloc, CalculatorPageState>(
-      builder: (context, state) {
-        final bloc = context.read<CalculatorPageBloc>();
-        CalculationActions? currentAction;
-        if (state is CalculatorPageActionState) {
-          currentAction = state.actions;
-        }
-
-        return Scaffold(
-          backgroundColor: Colors.black54,
-          body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextField(
-                          style: const TextStyle(
-                              fontSize: 48, color: Colors.white),
-                          controller: bloc.textEditingController,
-                          textAlign: TextAlign.end,
-                          enabled: false,
-                          decoration:
-                              const InputDecoration(border: InputBorder.none),
-                        ),
-                      ],
+    return Scaffold(
+      backgroundColor: Colors.black54,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextField(
+                      style: const TextStyle(fontSize: 48, color: Colors.white),
+                      controller: calculator.textEditingController,
+                      textAlign: TextAlign.end,
+                      enabled: false,
+                      decoration:
+                          const InputDecoration(border: InputBorder.none),
                     ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ButtonCalculator(
+                    color: Colors.grey[400]!,
+                    title: 'AC',
+                    onPressed: () {
+                      calculator.clickOnClear();
+                    },
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ButtonCalculator(
-                        color: Colors.grey[400]!,
-                        title: 'AC',
-                        onPressed: () {
-                          bloc.add(ClearFieldEvent());
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.grey[400]!,
-                        title: '+/-',
-                        onPressed: () {
-                          bloc.add(ClearFieldEvent());
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.grey[400]!,
-                        title: '%',
-                        onPressed: () {
-                          bloc.add(ClearFieldEvent());
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.amber,
-                        title: '/',
-                        isSelected:
-                            currentAction == CalculationActions.dilennya,
-                        onPressed: () {
-                          bloc.add(ActionInputEvent(
-                              action: CalculationActions.dilennya));
-                        },
-                      ),
-                    ],
+                  ButtonCalculator(
+                    color: Colors.grey[400]!,
+                    title: 'AC',
+                    onPressed: () {
+                      calculator.clickOnClear();
+                    },
                   ),
-                  const SizedBox(
-                    height: 16,
+                  ButtonCalculator(
+                    color: Colors.grey[400]!,
+                    title: 'AC',
+                    onPressed: () {
+                      calculator.clickOnClear();
+                    },
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: '7',
-                        onPressed: () {
-                          bloc.add(NumberInputEvent(num: 7));
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: '8',
-                        onPressed: () {
-                          bloc.add(NumberInputEvent(num: 8));
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: '9',
-                        onPressed: () {
-                          bloc.add(NumberInputEvent(num: 9));
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.amber,
-                        title: '*',
-                        isSelected:
-                            currentAction == CalculationActions.mnojennya,
-                        onPressed: () {
-                          bloc.add(ActionInputEvent(
-                              action: CalculationActions.mnojennya));
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: '4',
-                        onPressed: () {
-                          bloc.add(NumberInputEvent(num: 4));
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: '5',
-                        onPressed: () {
-                          bloc.add(NumberInputEvent(num: 5));
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: '6',
-                        onPressed: () {
-                          bloc.add(NumberInputEvent(num: 6));
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.amber,
-                        title: '-',
-                        isSelected:
-                            currentAction == CalculationActions.vidnimannya,
-                        onPressed: () {
-                          bloc.add(ActionInputEvent(
-                              action: CalculationActions.vidnimannya));
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: '1',
-                        onPressed: () {
-                          bloc.add(NumberInputEvent(num: 1));
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: '2',
-                        onPressed: () {
-                          bloc.add(NumberInputEvent(num: 2));
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: '3',
-                        onPressed: () {
-                          bloc.add(NumberInputEvent(num: 3));
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.amber,
-                        title: '+',
-                        isSelected:
-                            currentAction == CalculationActions.dodavannya,
-                        onPressed: () {
-                          bloc.add(ActionInputEvent(
-                              action: CalculationActions.dodavannya));
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: '0',
-                        doubled: true,
-                        onPressed: () {
-                          bloc.add(NumberInputEvent(num: 0));
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.grey[900]!,
-                        title: ',',
-                        onPressed: () {
-                          bloc.add(DecimalInputEvent());
-                        },
-                      ),
-                      ButtonCalculator(
-                        color: Colors.amber,
-                        title: '=',
-                        onPressed: () {
-                          bloc.add(ActionInputEvent(
-                              action: CalculationActions.dorivnuye));
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 32,
+                  ButtonCalculator(
+                    color: Colors.amber,
+                    title: '/',
+                    isSelected:
+                        calculator.currentAction == CalculationActions.dilennya,
+                    onPressed: () {
+                      calculator.clickOnAction(CalculationActions.dilennya);
+                    },
                   ),
                 ],
               ),
-            ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: '7',
+                    onPressed: () {
+                      calculator.clickOnNumber(7);
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: '8',
+                    onPressed: () {
+                      calculator.clickOnNumber(8);
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: '9',
+                    onPressed: () {
+                      calculator.clickOnNumber(9);
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.amber,
+                    title: '*',
+                    isSelected: calculator.currentAction ==
+                        CalculationActions.mnojennya,
+                    onPressed: () {
+                      calculator.clickOnAction(CalculationActions.mnojennya);
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: '4',
+                    onPressed: () {
+                      calculator.clickOnNumber(4);
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: '5',
+                    onPressed: () {
+                      calculator.clickOnNumber(5);
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: '6',
+                    onPressed: () {
+                      calculator.clickOnNumber(6);
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.amber,
+                    title: '-',
+                    isSelected: calculator.currentAction ==
+                        CalculationActions.vidnimannya,
+                    onPressed: () {
+                      calculator.clickOnAction(CalculationActions.vidnimannya);
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: '1',
+                    onPressed: () {
+                      calculator.clickOnNumber(1);
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: '2',
+                    onPressed: () {
+                      calculator.clickOnNumber(2);
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: '3',
+                    onPressed: () {
+                      calculator.clickOnNumber(3);
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.amber,
+                    title: '+',
+                    isSelected: calculator.currentAction ==
+                        CalculationActions.dodavannya,
+                    onPressed: () {
+                      calculator.clickOnAction(CalculationActions.dodavannya);
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: '0',
+                    doubled: true,
+                    onPressed: () {
+                      calculator.clickOnNumber(0);
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.grey[900]!,
+                    title: ',',
+                    onPressed: () {
+                      calculator.cliclOnComma();
+                    },
+                  ),
+                  ButtonCalculator(
+                    color: Colors.amber,
+                    title: '=',
+                    onPressed: () {
+                      calculator.clickOnAction(CalculationActions.dorivnuye);
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
@@ -288,5 +287,43 @@ class ButtonCalculator extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _Calculator extends Calculator {
+  final BuildContext context;
+
+  CalculatorPageBloc get bloc => context.read<CalculatorPageBloc>();
+  @override
+  CalculationActions? get currentAction =>
+      (bloc.state is CalculatorPageActionState)
+          ? (bloc.state as CalculatorPageActionState).actions
+          : null;
+
+  @override
+  TextEditingController get textEditingController => bloc.textEditingController;
+
+  _Calculator({
+    required this.context,
+  });
+
+  @override
+  void clickOnAction(CalculationActions actions) {
+    bloc.add(ActionInputEvent(action: actions));
+  }
+
+  @override
+  void clickOnClear() {
+    bloc.add(ClearFieldEvent());
+  }
+
+  @override
+  void clickOnNumber(int number) {
+    bloc.add(NumberInputEvent(num: number));
+  }
+
+  @override
+  void cliclOnComma() {
+    bloc.add(DecimalInputEvent());
   }
 }
