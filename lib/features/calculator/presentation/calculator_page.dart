@@ -117,6 +117,8 @@ class _CalculatorPageBody extends StatelessWidget {
                       ButtonCalculator(
                         color: Colors.amber,
                         title: '*',
+                        isSelected:
+                            currentAction == CalculationActions.mnojennya,
                         onPressed: () {
                           bloc.add(ActionInputEvent(
                               action: CalculationActions.mnojennya));
@@ -154,6 +156,8 @@ class _CalculatorPageBody extends StatelessWidget {
                       ButtonCalculator(
                         color: Colors.amber,
                         title: '-',
+                        isSelected:
+                            currentAction == CalculationActions.vidnimannya,
                         onPressed: () {
                           bloc.add(ActionInputEvent(
                               action: CalculationActions.vidnimannya));
@@ -191,6 +195,8 @@ class _CalculatorPageBody extends StatelessWidget {
                       ButtonCalculator(
                         color: Colors.amber,
                         title: '+',
+                        isSelected:
+                            currentAction == CalculationActions.dodavannya,
                         onPressed: () {
                           bloc.add(ActionInputEvent(
                               action: CalculationActions.dodavannya));
