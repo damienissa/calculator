@@ -1,14 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'calculator_page_bloc.dart';
 
-enum CalculationActions {
-  dilennya,
-  mnojennya,
-  vidnimannya,
-  dodavannya,
-  dorivnuye;
-}
-
 @immutable
 abstract class CalculatorPageEvent extends Equatable {}
 

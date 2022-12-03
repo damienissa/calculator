@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'features/calculator/presentation/bloc/calculator_page_bloc.dart';
 import 'features/calculator/presentation/calculator_page.dart';
 
 void main() {
@@ -32,6 +31,14 @@ class MyApp extends StatelessWidget {
 //  - TextField для відображення результату
 //  - CupertinoButton для кнопок
 // Все інше це просто надлаштування над ними.
+enum CalculationActions {
+  dilennya,
+  mnojennya,
+  vidnimannya,
+  dodavannya,
+  dorivnuye;
+}
+
 abstract class Calculator {
   TextEditingController get textEditingController;
   CalculationActions? get currentAction;
