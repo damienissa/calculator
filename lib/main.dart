@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'features/calculator/presentation/calculator_page.dart';
@@ -14,10 +13,62 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Calculator app',
       home: CalculatorPage(
         builder: (Calculator calculator) {
-          return Container();
+          return Scaffold(
+            backgroundColor: Colors.black,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        calculator.textEditingController.text,
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CupertinoButton(
+                        onPressed: () {},
+                        child: const Text(
+                          '0',
+                          style: TextStyle(
+                              color: Colors.white,
+                              backgroundColor: Colors.grey,
+                              fontSize: 26),
+                        ),
+                      ),
+                      CupertinoButton(
+                        onPressed: () {},
+                        child: const Text(
+                          ',',
+                          style: TextStyle(
+                              color: Colors.white,
+                              backgroundColor: Colors.grey,
+                              fontSize: 26),
+                        ),
+                      ),
+                      CupertinoButton(
+                        onPressed: () {},
+                        child: const Text(
+                          '=',
+                          style: TextStyle(
+                              color: Colors.white,
+                              backgroundColor: Colors.orange,
+                              fontSize: 26),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
         },
       ),
     );
