@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,256 +25,163 @@ class MyApp extends StatelessWidget {
                 verticalDirection: VerticalDirection.up,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            textAlign: TextAlign.center,
-                            '0',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                            ),
-                          ),
-                        ),
+                      NumberButton(
+                        title: '0',
+                        action: () {
+                          calculator.clickOnNumber(0);
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
                       ),
-                      const SizedBox(
-                        width: 16,
+                      NumberButton(
+                        title: ',',
+                        action: () {
+                          calculator.cliclOnComma();
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
                       ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            ',',
-                            style: TextStyle(color: Colors.white, fontSize: 35),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.activeOrange,
-                          onPressed: () {},
-                          child: const Text(
-                            '=',
-                            style: TextStyle(color: Colors.white, fontSize: 35),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            textAlign: TextAlign.start,
-                            '1',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            textAlign: TextAlign.start,
-                            '2',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            '3',
-                            style: TextStyle(color: Colors.white, fontSize: 35),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.activeOrange,
-                          onPressed: () {},
-                          child: const Text(
-                            '+',
-                            style: TextStyle(color: Colors.white, fontSize: 35),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            textAlign: TextAlign.start,
-                            '4',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            textAlign: TextAlign.start,
-                            '5',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            '6',
-                            style: TextStyle(color: Colors.white, fontSize: 35),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.activeOrange,
-                          onPressed: () {},
-                          child: const Text(
-                            '-',
-                            style: TextStyle(color: Colors.white, fontSize: 35),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            textAlign: TextAlign.start,
-                            '7',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            textAlign: TextAlign.start,
-                            '8',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.quaternarySystemFill,
-                          onPressed: () {},
-                          child: const Text(
-                            '9',
-                            style: TextStyle(color: Colors.white, fontSize: 35),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Flexible(
-                        child: CupertinoButton(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CupertinoColors.activeOrange,
-                          onPressed: () {},
-                          child: const Text(
-                            'X',
-                            style: TextStyle(color: Colors.white, fontSize: 35),
-                          ),
-                        ),
+                      NumberButton(
+                        title: '=',
+                        action: () {
+                          calculator
+                              .clickOnAction(CalculationActions.dorivnuye);
+                        },
+                        color: CupertinoColors.activeOrange,
                       ),
                     ],
                   ),
                   Row(
+                    children: [
+                      NumberButton(
+                        title: '1',
+                        action: () {
+                          calculator.clickOnNumber(1);
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
+                      ),
+                      NumberButton(
+                        title: '2',
+                        action: () {
+                          calculator.clickOnNumber(2);
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
+                      ),
+                      NumberButton(
+                        title: '3',
+                        action: () {
+                          calculator.clickOnNumber(3);
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
+                      ),
+                      NumberButton(
+                        title: '+',
+                        action: () {
+                          calculator
+                              .clickOnAction(CalculationActions.dodavannya);
+                        },
+                        color: CupertinoColors.activeOrange,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      NumberButton(
+                        title: '4',
+                        action: () {
+                          calculator.clickOnNumber(4);
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
+                      ),
+                      NumberButton(
+                        title: '5',
+                        action: () {
+                          calculator.clickOnNumber(5);
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
+                      ),
+                      NumberButton(
+                        title: '6',
+                        action: () {
+                          calculator.clickOnNumber(6);
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
+                      ),
+                      NumberButton(
+                        title: '-',
+                        action: () {
+                          calculator
+                              .clickOnAction(CalculationActions.vidnimannya);
+                        },
+                        color: CupertinoColors.activeOrange,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      NumberButton(
+                        title: '7',
+                        action: () {
+                          calculator.clickOnNumber(7);
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
+                      ),
+                      NumberButton(
+                        title: '8',
+                        action: () {
+                          calculator.clickOnNumber(8);
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
+                      ),
+                      NumberButton(
+                        title: '9',
+                        action: () {
+                          calculator.clickOnNumber(9);
+                        },
+                        color: CupertinoColors.darkBackgroundGray,
+                      ),
+                      NumberButton(
+                        title: 'X',
+                        action: () {
+                          calculator
+                              .clickOnAction(CalculationActions.mnojennya);
+                        },
+                        color: CupertinoColors.activeOrange,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      NumberButton(
+                        title: 'AC',
+                        action: () {
+                          calculator.clickOnClear();
+                        },
+                        color: CupertinoColors.systemGrey,
+                      ),
+                      NumberButton(
+                        title: '+/-',
+                        action: () {},
+                        color: CupertinoColors.systemGrey,
+                      ),
+                      NumberButton(
+                        title: '%',
+                        action: () {},
+                        color: CupertinoColors.systemGrey,
+                      ),
+                      NumberButton(
+                        title: '/',
+                        action: () {},
+                        color: CupertinoColors.activeOrange,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
                         calculator.textEditingController.text,
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 70),
                       ),
                     ],
                   ),
@@ -310,4 +218,37 @@ abstract class Calculator {
   void clickOnNumber(int number);
   void clickOnClear();
   void cliclOnComma();
+}
+
+class NumberButton extends StatelessWidget {
+  const NumberButton(
+      {Key? key,
+      required this.title,
+      required this.action,
+      required this.color})
+      : super(key: key);
+  final String title;
+  final VoidCallback action;
+  final Color color;
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: CupertinoButton(
+        padding: const EdgeInsets.all(8),
+        onPressed: action,
+        child: Container(
+          height: 60,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Center(
+              child: Text(
+            title,
+            style: const TextStyle(fontSize: 30, color: Colors.white),
+          )),
+        ),
+      ),
+    );
+  }
 }
