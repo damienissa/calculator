@@ -171,7 +171,7 @@ class MyApp extends StatelessWidget {
                       ),
                       // TODO: - Ділення щас не в почете?
                       NumberButton(
-                        title: '/',
+                        title: '÷',
                         action: () {},
                         color: CupertinoColors.activeOrange,
                       ),
@@ -179,15 +179,18 @@ class MyApp extends StatelessWidget {
                   ),
                   // TODO: - добавить падінг щоб було красивіше.
                   // - Обернуть текст в ValueListenableBuilder це нужно шоб строчка обновлялась по любому ізмененію текста
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        calculator.textEditingController.text,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 70),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          calculator.textEditingController.text,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 70),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
