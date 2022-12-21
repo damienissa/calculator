@@ -6,6 +6,7 @@ import 'features/calculator/presentation/calculator_page.dart';
 
 void main() {
   runApp(const MyApp());
+  // TODO: - В калькуляторі є змінна currentAction вона потрібна щоб був ефект як в реальному калькуляторі тіпа як кнопка нажата) Подумай як це можно зробить.
 }
 
 class MyApp extends StatelessWidget {
@@ -168,6 +169,7 @@ class MyApp extends StatelessWidget {
                         action: () {},
                         color: CupertinoColors.systemGrey,
                       ),
+                      // TODO: - Ділення щас не в почете?
                       NumberButton(
                         title: '/',
                         action: () {},
@@ -175,6 +177,8 @@ class MyApp extends StatelessWidget {
                       ),
                     ],
                   ),
+                  // TODO: - добавить падінг щоб було красивіше.
+                  // - Обернуть текст в ValueListenableBuilder це нужно шоб строчка обновлялась по любому ізмененію текста
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
